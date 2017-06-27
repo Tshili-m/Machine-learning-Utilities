@@ -17,7 +17,7 @@ def copy_random_images(directory: str, to_dir: str, sample_size: float=0.20) -> 
     for d in dirs:
         files = glob.glob("{0}/{1}/{2}".format(directory, d,'*.jpg'))
         sample = random.sample(files, k=int(len(files) * sample_size))
-        print(colored('{1}: {0} '.format(len(sample), d)),  'green')
+        print(colored('{1}: {0} '.format(len(sample), d),  'blue'))
         copy_files(sample, to_dir + "/" + d + "/")
 
 
@@ -25,7 +25,7 @@ def copy_files(files: str , to_dir: str) -> None:
     os.makedirs(os.path.dirname(to_dir), exist_ok=True)
     for file in files:
         copyfile(file, to_dir +  os.path.basename(file))
-        print(colored('coppied ' + file), "blue")
+        print(colored('coppied ' + file, "green"))
 
 
 def main():
