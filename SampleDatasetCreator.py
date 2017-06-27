@@ -26,7 +26,18 @@ def copy_files(files: str , to_dir: str) -> None:
     for file in files:
         copyfile(file, to_dir +  os.path.basename(file))
         print(colored('coppied ' + file, "green"))
-
+        
+def mkdirs(path: str) -> None:
+    [os.mkdir('{}/c{}'.format(path, i)) for i in range(10)]
+               
+def mv_valid(path: str) -> None:
+    for i in range(10):
+        d = 'c{}'.format(i)
+        g = glob('{}/{}/*.jpg'.format(path, d))
+        shuf = np.random.permutation(g)
+        for i in range(200):
+            os.rename(shuf[i], shuf[i].replace('train', 'valid'))
+            
 
 def main():
     copy_random_images(directory='./imgs/train/', to_dir='./sample/train/')
